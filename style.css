@@ -1,0 +1,250 @@
+:root{
+  --preto:#0a0a0b;
+  --preto2:#151517;
+  --preto3:#1e1e21;
+  --ouro1:#bf953f;
+  --ouro2:#fcf6ba;
+  --ouro3:#aa771c;
+  --ouro-grad:linear-gradient(120deg,#aa771c,#fcf6ba 35%,#bf953f 60%,#e6c874 80%,#aa771c);
+  --marfim:#f3ede0;
+  --cinza:#8a877d;
+  --easing:cubic-bezier(.16,.8,.24,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--preto);
+  color:var(--marfim);
+  font-family:'Poppins',sans-serif;
+  font-weight:300;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important; transition-duration:.01ms !important;}
+}
+a{color:inherit;}
+img{max-width:100%;display:block;}
+
+.ouro-texto{
+  background:var(--ouro-grad);
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ===== ornamento (recriado do logo) ===== */
+.ornamento{display:flex;align-items:center;justify-content:center;gap:0;}
+.ornamento svg{width:100%;max-width:260px;height:auto;}
+.ornamento path,.ornamento circle,.ornamento polygon{stroke:#c9a44c;}
+
+/* ===== NAV ===== */
+.navbar{
+  position:fixed;top:0;left:0;width:100%;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 6%;
+  background:rgba(10,10,11,.75);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(191,149,63,.18);
+  z-index:1000;
+  transition:padding .3s var(--easing);
+}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-mark{
+  position:relative;width:34px;height:34px;
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+}
+.brand-mark span{position:absolute;font-size:1.5rem;line-height:1;}
+.brand-mark .g{top:-2px;left:0;}
+.brand-mark .b{bottom:-4px;left:9px;font-size:1.15rem;}
+.brand-name{font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:1rem;}
+.brand-name b{font-weight:400;}
+.nav-links{display:flex;list-style:none;gap:26px;}
+.nav-links a{
+  text-decoration:none;font-family:'Bebas Neue',sans-serif;
+  letter-spacing:2px;font-size:.85rem;color:var(--marfim);
+  position:relative;padding-bottom:3px;opacity:.85;
+  transition:opacity .25s;
+}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:0;width:0;height:1px;
+  background:var(--ouro-grad);transition:width .3s var(--easing);
+}
+.nav-links a:hover{opacity:1;}
+.nav-links a:hover::after{width:100%;}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:120px 6% 60px;
+  position:relative;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(191,149,63,.14), transparent 55%),
+    radial-gradient(ellipse at 15% 90%, rgba(191,149,63,.08), transparent 50%),
+    var(--preto);
+  overflow:hidden;
+}
+.hero::before,.hero::after{
+  content:'';position:absolute;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom, transparent, rgba(191,149,63,.35), transparent);
+}
+.hero::before{left:8%;}
+.hero::after{right:8%;}
+
+.reveal-side{opacity:0;transition:transform 1s var(--easing), opacity 1s var(--easing);}
+.from-left{transform:translateX(-70px);}
+.from-right{transform:translateX(70px);}
+.from-up{transform:translateY(40px);}
+.reveal-side.in{opacity:1;transform:translate(0,0);}
+
+.hero-mark{width:96px;margin:0 auto 6px;}
+.hero-mark svg{width:100%;}
+
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:700;
+  font-size:clamp(2.4rem,9vw,4.2rem);
+  letter-spacing:1px;
+  margin:10px 0 2px;
+}
+.hero-title span{display:block;font-size:.42em;letter-spacing:8px;font-weight:600;margin-top:6px;}
+.hero-tag{
+  font-family:'Bebas Neue',sans-serif;
+  letter-spacing:4px;font-size:.8rem;color:var(--ouro1);
+  margin-top:14px;
+}
+.hero-sub{max-width:340px;color:var(--cinza);font-size:.92rem;margin:16px auto 0;}
+
+.hero-links{
+  margin-top:34px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
+}
+.hero-links a{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 22px;border-radius:40px;
+  border:1px solid rgba(191,149,63,.4);
+  text-decoration:none;font-size:.82rem;letter-spacing:1px;
+  background:rgba(255,255,255,.02);
+  transition:.35s var(--easing);
+}
+.hero-links a:hover{background:var(--ouro-grad);color:#0a0a0b;border-color:transparent;transform:translateY(-3px);}
+
+.scroll-cue{
+  position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
+  font-size:1.1rem;color:var(--ouro1);opacity:.7;
+  animation:bounce 2.2s infinite;
+}
+@keyframes bounce{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,10px);}}
+
+/* ===== SECTION SHELL ===== */
+section{padding:90px 6%;position:relative;}
+.eyebrow{
+  font-family:'Bebas Neue',sans-serif;letter-spacing:4px;font-size:.78rem;
+  color:var(--ouro1);text-align:center;display:block;margin-bottom:8px;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  text-align:center;font-size:clamp(1.8rem,6vw,2.6rem);margin-bottom:14px;
+}
+.section-sub{
+  text-align:center;color:var(--cinza);font-size:.9rem;
+  max-width:420px;margin:0 auto 46px;
+}
+.divider{margin:0 auto 46px;}
+
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s var(--easing),transform .8s var(--easing);}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* ===== SERVIÇOS ===== */
+.grid-services{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:20px;max-width:1100px;margin:0 auto;
+}
+.card{
+  background:linear-gradient(160deg,var(--preto2),var(--preto3));
+  border:1px solid rgba(191,149,63,.14);
+  padding:38px 26px;border-radius:4px;text-align:center;
+  transition:transform .4s var(--easing),border-color .4s;
+  position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;left:0;bottom:0;width:100%;height:2px;
+  background:var(--ouro-grad);transform:scaleX(0);transform-origin:left;
+  transition:transform .5s var(--easing);
+}
+.card:hover{transform:translateY(-8px);border-color:rgba(191,149,63,.4);}
+.card:hover::before{transform:scaleX(1);}
+.card i{font-size:1.9rem;margin-bottom:18px;display:inline-block;background:var(--ouro-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.card h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;margin-bottom:10px;}
+.card p{color:var(--cinza);font-size:.86rem;}
+
+/* ===== CORTES - carrossel estilo instagram ===== */
+.carousel-wrap{max-width:1100px;margin:0 auto;}
+.carousel{
+  display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:6px 6% 26px;margin:0 -6%;
+  scrollbar-width:thin;scrollbar-color:var(--ouro1) transparent;
+}
+.carousel::-webkit-scrollbar{height:5px;}
+.carousel::-webkit-scrollbar-thumb{background:var(--ouro3);border-radius:10px;}
+.reel{
+  flex:0 0 auto;width:220px;height:280px;scroll-snap-align:center;
+  border-radius:10px;position:relative;overflow:hidden;
+  border:1px solid rgba(191,149,63,.22);
+  background:linear-gradient(150deg,#1c1c1f,#0e0e10);
+}
+.reel img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--easing);}
+.reel:hover img{transform:scale(1.06);}
+.reel-caption{
+  position:absolute;left:0;right:0;bottom:0;padding:14px 12px 12px;
+  background:linear-gradient(to top,rgba(0,0,0,.85),transparent);
+  font-family:'Bebas Neue',sans-serif;letter-spacing:1.5px;font-size:.82rem;
+}
+
+/* ===== ESPAÇO ===== */
+.gallery-wrap{max-width:640px;margin:0 auto;}
+.gallery-stage{
+  position:relative;width:100%;height:min(78vw,560px);
+  border-radius:14px;overflow:hidden;
+  border:1px solid rgba(191,149,63,.22);
+  background:var(--preto2);
+}
+.gallery-stage .photo-card{
+  position:absolute;inset:0;opacity:0;
+  transition:opacity 1s var(--easing);
+}
+.gallery-stage .photo-card.active{opacity:1;}
+.photo-card img{width:100%;height:100%;object-fit:cover;}
+.photo-tag{
+  position:absolute;bottom:16px;left:16px;
+  font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:.85rem;
+  background:rgba(10,10,11,.65);padding:7px 14px;border:1px solid rgba(191,149,63,.35);
+}
+@media (min-width:860px){
+  .gallery-stage{height:520px;}
+}
+
+/* ===== CONTATO / RODAPÉ ===== */
+.contato{text-align:center;}
+.contato-lista{
+  display:flex;flex-direction:column;gap:16px;max-width:340px;margin:0 auto 30px;
+}
+.contato-lista a{
+  display:flex;align-items:center;gap:12px;text-decoration:none;
+  padding:14px 18px;border:1px solid rgba(191,149,63,.25);border-radius:8px;
+  font-size:.88rem;transition:.3s;
+}
+.contato-lista a i{color:var(--ouro1);font-size:1.1rem;width:20px;text-align:center;}
+.contato-lista a:hover{background:rgba(191,149,63,.08);border-color:rgba(191,149,63,.5);}
+
+footer{
+  text-align:center;padding:36px 6%;color:var(--cinza);
+  font-size:.75rem;letter-spacing:1px;border-top:1px solid rgba(191,149,63,.14);
+}
+footer .ouro-texto{font-family:'Bebas Neue',sans-serif;letter-spacing:2px;display:block;margin-bottom:6px;font-size:.85rem;}
+
+@media (min-width:860px){
+  .hero-sub{max-width:460px;}
+}
